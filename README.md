@@ -5,7 +5,7 @@ Este projeto implementa em linguagem **C** um programa para leitura e análise d
 ---
 
 <details>
-<summary>📘 Português</summary>
+<summary>Português</summary>
 
 ## Descrição
 O programa lê um arquivo `alimentos.csv` contendo **100 alimentos** selecionados da TACO e permite ao usuário consultar e ordenar os alimentos por diferentes critérios (energia, proteína, carboidrato, umidade etc.), sem modificar o vetor original.
@@ -65,7 +65,7 @@ gcc main.c -o programa
 ---
 
 <details>
-<summary>📘 English</summary>
+<summary>English</summary>
 
 ## Description
 This project implements in **C language** a program to read and analyze foods from the **Brazilian Food Composition Table (TACO)**, following the assignment of Imperative Programming class.
