@@ -9,6 +9,7 @@
 #define MIN_ALIMENTOS_CATEGORIA 5
 #define MAX_ALIMENTOS 100
 
+
 // Estrutura das categorias
 typedef enum
 {
@@ -43,7 +44,7 @@ typedef struct
 
 //funcao para ler o csv 
 int ler_csv(const char *nome_do_arquivo, Alimento alimentos_lidos[]){
-    FILE *arquivo = fopen(nome_do_arquivo, "r");
+    FILE *arquivo = fopen(nome_do_arquivo, "r, ccs=UTF-8");
 
 
     // verifica se o arquivo foi aberto
