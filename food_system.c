@@ -2,12 +2,15 @@
 #include <stdlib.h>
 #include <string.h>
 
+//--
 #define MAX 200
 #define MAX_DESC 100
 #define MAX_CATEGORIAS_SELECIONADAS 10
 #define MAX_ALIMENTOS_CATEGORIA 20
 #define MIN_ALIMENTOS_CATEGORIA 5
 #define MAX_ALIMENTOS 100
+
+
 
 // Estrutura das categorias
 typedef enum
@@ -40,50 +43,6 @@ typedef struct
     float carboidrato;
     Categoria categoria;
 } Alimento;
-
-//funcao para ler o csv 
-int ler_csv(const char *nome_do_arquivo, Alimento alimentos_lidos[]){
-    FILE *arquivo = fopen(nome_do_arquivo, "r");
-
-
-    // verifica se o arquivo foi aberto
-    if (arquivo == NULL)
-    {
-        printf("Erro ao abrir o arquivo '%s'. Verifique se o arquivo existe e o caminho esta correto.\n", nome_do_arquivo);
-        return 0; 
-    }
-
-    char linha[256];
-    int contador_alimentos = 0;
-
-
-    fgets(linha, sizeof(linha), arquivo); 
-
-    // le as linhas ate o final ou EOF (end of file)
-    while (fgets(linha, sizeof(linha), arquivo) != EOF)
-    {
-
-        // preencher a struct usando scanf
-        scanf(linha, "%d,%[^,],%f,%f,%f,%f,%d",
-                &alimentos_lidos[contador_alimentos].numero_do_alimento,
-                alimentos_lidos[contador_alimentos].descricao,
-                &alimentos_lidos[contador_alimentos].umidade,
-                &alimentos_lidos[contador_alimentos].energia,
-                &alimentos_lidos[contador_alimentos].proteina,
-                &alimentos_lidos[contador_alimentos].carboidrato,
-                (int *)&alimentos_lidos[contador_alimentos].categoria);
-
-        contador_alimentos++;
-
-        if (contador_alimentos >= MAX_ALIMENTOS)
-        {
-            break;
-        }
-    }
-
-    fclose(arquivo);
-    return contador_alimentos;
-    }
 
 
 
