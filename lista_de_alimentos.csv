@@ -11,11 +11,11 @@ Número do alimento,Descrição do alimento,Umidade (%),Energia (kcal),Proteína
 37,"Lasanha massa fresca cozida","59,60%",164,"5,8","32,5",Cereais e derivados
 40,"Macarrão trigo cru","10,20%",371,10,"77,9",Cereais e derivados
 45,"Milho verde enlatado drenado","76,20%",98,"3,2","17,1",Cereais e derivados
-65,"Abóbora cabotian cozida","86,40%",48,"1,4","10,8","Verduras, hortaliças e derivados"
-70,"Abobrinha italiana cozida","95,30%",15,"1,1",3,"Verduras, hortaliças e derivados"
+65,"Abóbora cabotian, cozida","86,40%",48,"1,4","10,8","Verduras, hortaliças e derivados"
+70,"Abobrinha italiana, cozida","95,30%",15,"1,1",3,"Verduras, hortaliças e derivados"
 74,"Acelga crua","93,20%",21,"1,4","4,6","Verduras, hortaliças e derivados"
-78,"Alface crespa crua","96,10%",11,"1,3","1,7","Verduras, hortaliças e derivados"
-90,"Batata frita tipo chips industrializada","2,70%",543,"5,6","51,2","Verduras, hortaliças e derivados"
+78,"Alface crespa, crua","96,10%",11,"1,3","1,7","Verduras, hortaliças e derivados"
+90,"Batata frita, tipo chips, industrializada","2,70%",543,"5,6","51,2","Verduras, hortaliças e derivados"
 97,"Beterraba cozida","90,60%",32,"1,3","7,2","Verduras, hortaliças e derivados"
 109,"Cenoura cozida","91,70%",30,"0,8","6,7","Verduras, hortaliças e derivados"
 113,"Chuchu cru","94,8%%",17,"0,7","4,1","Verduras, hortaliças e derivados"
@@ -26,76 +26,76 @@ Número do alimento,Descrição do alimento,Umidade (%),Energia (kcal),Proteína
 140,"Pão de queijo assado","33,70%",363,"5,1","34,2","Verduras, hortaliças e derivados"
 149,"Repolho branco cru","94,70%",17,"0,9","3,9","Verduras, hortaliças e derivados"
 157,"Tomate com semente cru","95,10%",15,"1,1","3,1","Verduras, hortaliças e derivados"
-175,"Banana da terra crua","63,90%",128,"1,4","33,7",Frutas e derivados
-183,"Cacau cru","79,20%",74,1,"19,4",Frutas e derivados
-207,"Kiwi cru","85,90%",51,"1,3","11,5",Frutas e derivados
-221,"Maçã argentina com casca crua","82,60%",63,"0,2","16,6",Frutas e derivados
-235,"Melancia crua","90,70%",33,"0,9","8,1",Frutas e derivados
-250,"Tamarindo cru",22%,276,"3,2","72,5",Frutas e derivados
-259,"Azeite de dendê",NA,884,NA,NA,Gorduras e óleos
-261,"Manteiga com sal","15,80%",726,"0,4","0,1",Gorduras e óleos
-265,"Margarina com óleo interesterificado, sem sal (65% de lipídeos)","32,00%",594,Tr,0,Gorduras e óleos
-272,"Óleo de soja",NA,884,NA,NA,Gorduras e óleos
-278,"Atum fresco cru","73,10%",118,"25,7",0,Pescados e frutos do mar
-284,"Camarão Rio Grande grande cozido","78,70%",90,19,0,Pescados e frutos do mar
-296,"Lambari congelado cru","71,90%",131,"16,8",0,Pescados e frutos do mar
-315,"Salmão filé com pele fresco grelhado","60,90%",229,"23,9",0,Pescados e frutos do mar
-318,"Sardinha assada","60,10%",164,"32,2",0,Pescados e frutos do mar
-322,"Tacunaré filé congelado cru","79,90%",88,18,0,Pescados e frutos do mar
-323,"Apresuntado","73,70%",129,"13,5","2,9",Carnes e derivados
-340,"Carne bovina contra-filé à milanesa","42,20%",352,"20,6","12,2",Carnes e derivados
-389,"Empada de frango pré-cozida assada","28,20%",358,"6,9","47,5",Carnes e derivados
-408,"Frango peito sem pele cozido","65,60%",163,"31,5",0,Carnes e derivados
-417,"Hambúrguer bovino grelhado","59,20%",210,"13,2","11,3",Carnes e derivados
-435,"Porco pernil assado","49,30%",262,"32,1",0,Carnes e derivados
-438,"Presunto com capa de gordura","73,90%",128,"14,4","1,4",Carnes e derivados
-443,"Salame","34,70%",398,"25,8","2,9",Carnes e derivados
-447,"Creme de leite","70,90%",221,"1,5","4,5",Leite e derivados
-451,"Iogurte sabor morango","84,60%",70,"2,7","9,7",Leite e derivados
-460,"Leite fermentado","81,90%",70,"1,9","15,7",Leite e derivados
-464,"Queijo parmesão","21,20%",453,"35,6","1,7",Leite e derivados
-467,"Queijo prato","42,40%",360,"22,7","1,9",Leite e derivados
-469,"Queijo ricota","73,60%",140,"12,6","3,8",Leite e derivados
-471,"Café infusão 10%","97,40%",9,"0,7","1,5",Bebidas (alcoólicas e não alcoólicas)
-473,"Cana caldo de","81,70%",65,Tr,"18,2",Bebidas (alcoólicas e não alcoólicas)
-476,"Chá mate infusão 5%","99,30%",3,0,"0,6",Bebidas (alcoólicas e não alcoólicas)
-478,"Coco água de","94,30%",22,0,"5,3",Bebidas (alcoólicas e não alcoólicas)
-480,"Refrigerante tipo cola","91,30%",34,0,"8,7",Bebidas (alcoólicas e não alcoólicas)
-481,"Refrigerante tipo guaraná","90,00%",39,0,10,Bebidas (alcoólicas e não alcoólicas)
-484,"Omelete de queijo","60,50%",268,"15,6","0,4",Ovos e derivados
-490,"Ovo de galinha inteiro frito","63,50%",240,"15,6","1,2",Ovos e derivados
-491,"Achocolatado","1,10%",401,"4,2","91,2",Produtos açucarados
-495,"Chocolate ao leite","1,30%",540,"7,2","59,6",Produtos açucarados
-499,"Cocada branca","3,40%",449,"1,1","81,4",Produtos açucarados
-504,"Maria mole","21,60%",301,"3,8","73,6",Produtos açucarados
-507,"Mel de abelha","15,80%",309,0,84,Produtos açucarados
-510,"Rapadura","7,10%",352,1,"90,8",Produtos açucarados
-511,"Café pó torrado","2,90%",419,"14,7","65,8",Miscelâneas
-512,"Capuccino pó","2,60%",417,"8,6","73,6",Miscelâneas
-514,"Fermento biológico levedura tablete","71,90%",90,17,"7,7",Miscelâneas
-515,"Gelatina sabores variados pó","1,20%",380,"8,9","89,2",Miscelâneas
-517,"Sal grosso","0,40%",NA,NA,NA,Miscelâneas
-518,"Shoyu","70,60%",61,"3,3","11,6",Miscelâneas
-530,"Bolinho de arroz","41,50%",274,8,"41,7",Alimentos preparados
-537,"Estrogonofe de frango","70,10%",173,15,3,Alimentos preparados
-540,"Feijoada","71,80%",117,"8,7","11,6",Alimentos preparados
-551,"Tapioca com manteiga","24,90%",348,"0,1","63,6",Alimentos preparados
-554,"Vatapá","58,40%",255,6,"9,7",Alimentos preparados
-556,"Yakisoba","69,40%",113,"7,5","18,3",Alimentos preparados
-560,"Envilha enlatada drenada","80,10%",74,"4,6","13,4",Leguminosas e derivados
-567,"Feijão preto cozido","80,20%",77,"4,5",14,Leguminosas e derivados
-575,"Grão-de-bico cru","12,30%",355,"21,2","57,9",Leguminosas e derivados
-579,"Paçoca amendoim","1,80%",487,16,"52,4",Leguminosas e derivados
-581,"Soja farinha","5,80%",404,36,"38,4",Leguminosas e derivados
-585,"Tremoço cru","9,70%",381,"33,6","43,8",Leguminosas e derivados
-587,"Amêndoa torrada salgada","3,10%",581,"18,6","29,5",Nozes e sementes
-588,"Castanha-de-caju torrada salgada","3,50%",570,"18,5","29,1",Nozes e sementes
-589,"Castanha-do-Brasil crua","3,50%",643,"14,5","15,1",Nozes e sementes
-590,"Coco cru","43%",406,"3,7","10,4",Nozes e sementes
-591,"Coco verde cru",*,*,*,*,Nozes e sementes
-592,"Farinha de mesocarpo de babaçu crua","15,80%",329,"1,4","79,2",Nozes e sementes
-593,"Gargelim semente","3,90%",584,"21,2","21,6",Nozes e sementes
-594,"Linhaça semente","6,70%",495,"14,1","43,3",Nozes e sementes
-595,"Pinhão cozido","50,50%",174,3,"43,9",Nozes e sementes
-596,"Pupunha cozida","54,50%",219,"2,5","29,6",Nozes e sementes
-597,"Noz crua","6,20%",620,14,"18,4",Nozes e sementes
+175,"Banana da terra crua","63,90%",128,"1,4","33,7","Frutas e derivados"
+183,"Cacau cru","79,20%",74,1,"19,4","Frutas e derivados"
+207,"Kiwi cru","85,90%",51,"1,3","11,5","Frutas e derivados"
+221,"Maçã argentina com casca crua","82,60%",63,"0,2","16,6","Frutas e derivados"
+235,"Melancia crua","90,70%",33,"0,9","8,1","Frutas e derivados"
+250,"Tamarindo cru",22%,276,"3,2","72,5","Frutas e derivados"
+259,"Azeite de dendê",NA,884,NA,NA,"Gorduras e óleos"
+261,"Manteiga com sal","15,80%",726,"0,4","0,1","Gorduras e óleos"
+265,"Margarina com óleo interesterificado, sem sal (65% de lipídeos)","32,00%",594,Tr,0,"Gorduras e óleos"
+272,"Óleo de soja",NA,884,NA,NA,"Gorduras e óleos"
+278,"Atum fresco cru","73,10%",118,"25,7",0,"Pescados e frutos do mar"
+284,"Camarão Rio Grande grande cozido","78,70%",90,19,0,"Pescados e frutos do mar"
+296,"Lambari congelado cru","71,90%",131,"16,8",0,"Pescados e frutos do mar"
+315,"Salmão filé com pele fresco grelhado","60,90%",229,"23,9",0,"Pescados e frutos do mar"
+318,"Sardinha assada","60,10%",164,"32,2",0,"Pescados e frutos do mar"
+322,"Tacunaré filé congelado cru","79,90%",88,18,0,"Pescados e frutos do mar"
+323,"Apresuntado","73,70%",129,"13,5","2,9","Carnes e derivados"
+340,"Carne bovina contra-filé à milanesa","42,20%",352,"20,6","12,2","Carnes e derivados"
+389,"Empada de frango pré-cozida assada","28,20%",358,"6,9","47,5","Carnes e derivados"
+408,"Frango peito sem pele cozido","65,60%",163,"31,5",0,"Carnes e derivados"
+417,"Hambúrguer bovino grelhado","59,20%",210,"13,2","11,3","Carnes e derivados"
+435,"Porco pernil assado","49,30%",262,"32,1",0,"Carnes e derivados"
+438,"Presunto com capa de gordura","73,90%",128,"14,4","1,4","Carnes e derivados"
+443,"Salame","34,70%",398,"25,8","2,9","Carnes e derivados"
+447,"Creme de leite","70,90%",221,"1,5","4,5","Leite e derivados"
+451,"Iogurte sabor morango","84,60%",70,"2,7","9,7","Leite e derivados"
+460,"Leite fermentado","81,90%",70,"1,9","15,7","Leite e derivados"
+464,"Queijo parmesão","21,20%",453,"35,6","1,7","Leite e derivados"
+467,"Queijo prato","42,40%",360,"22,7","1,9","Leite e derivados"
+469,"Queijo ricota","73,60%",140,"12,6","3,8","Leite e derivados"
+471,"Café infusão 10%","97,40%",9,"0,7","1,5","Bebidas (alcoólicas e não alcoólicas)"
+473,"Cana caldo de","81,70%",65,"Tr","18,2","Bebidas (alcoólicas e não alcoólicas)"
+476,"Chá mate infusão 5%","99,30%",3,0,"0,6","Bebidas (alcoólicas e não alcoólicas)"
+478,"Coco água de","94,30%",22,0,"5,3","Bebidas (alcoólicas e não alcoólicas)"
+480,"Refrigerante tipo cola","91,30%",34,0,"8,7","Bebidas (alcoólicas e não alcoólicas)"
+481,"Refrigerante tipo guaraná","90,00%",39,0,10,"Bebidas (alcoólicas e não alcoólicas)"
+484,"Omelete de queijo","60,50%",268,"15,6","0,4","Ovos e derivados"
+490,"Ovo de galinha inteiro frito","63,50%",240,"15,6","1,2","Ovos e derivados"
+491,"Achocolatado","1,10%",401,"4,2","91,2","Produtos açucarados"
+495,"Chocolate ao leite","1,30%",540,"7,2","59,6","Produtos açucarados"
+499,"Cocada branca","3,40%",449,"1,1","81,4","Produtos açucarados"
+504,"Maria mole","21,60%",301,"3,8","73,6","Produtos açucarados"
+507,"Mel de abelha","15,80%",309,0,84,"Produtos açucarados"
+510,"Rapadura","7,10%",352,1,"90,8","Produtos açucarados"
+511,"Café pó torrado","2,90%",419,"14,7","65,8","Miscelâneas"
+512,"Capuccino pó","2,60%",417,"8,6","73,6","Miscelâneas"
+514,"Fermento biológico levedura tablete","71,90%",90,17,"7,7","Miscelâneas"
+515,"Gelatina sabores variados pó","1,20%",380,"8,9","89,2","Miscelâneas"
+517,"Sal grosso","0,40%",NA,NA,NA,"Miscelâneas"
+518,"Shoyu","70,60%",61,"3,3","11,6","Miscelâneas"
+530,"Bolinho de arroz","41,50%",274,8,"41,7","Alimentos preparados"
+537,"Estrogonofe de frango","70,10%",173,15,3,"Alimentos preparados"
+540,"Feijoada","71,80%",117,"8,7","11,6","Alimentos preparados"
+551,"Tapioca com manteiga","24,90%",348,"0,1","63,6","Alimentos preparados"
+554,"Vatapá","58,40%",255,6,"9,7","Alimentos preparados"
+556,"Yakisoba","69,40%",113,"7,5","18,3","Alimentos preparados"
+560,"Envilha enlatada drenada","80,10%",74,"4,6","13,4","Leguminosas e derivados"
+567,"Feijão preto cozido","80,20%",77,"4,5",14,"Leguminosas e derivados"
+575,"Grão-de-bico cru","12,30%",355,"21,2","57,9","Leguminosas e derivados"
+579,"Paçoca de amendoim","1,80%",487,16,"52,4","Leguminosas e derivados"
+581,"Soja farinha","5,80%",404,36,"38,4","Leguminosas e derivados"
+585,"Tremoço cru","9,70%",381,"33,6","43,8","Leguminosas e derivados"
+587,"Amêndoa torrada salgada","3,10%",581,"18,6","29,5","Nozes e sementes"
+588,"Castanha-de-caju torrada salgada","3,50%",570,"18,5","29,1","Nozes e sementes"
+589,"Castanha-do-Brasil crua","3,50%",643,"14,5","15,1","Nozes e sementes"
+590,"Coco cru","43%",406,"3,7","10,4","Nozes e sementes"
+591,"Coco verde cru","*","*",*,*,Nozes e sementes
+592,"Farinha de mesocarpo de babaçu crua","15,80%",329,"1,4","79,2","Nozes e sementes"
+593,"Gargelim semente","3,90%",584,"21,2","21,6","Nozes e sementes"
+594,"Linhaça semente","6,70%",495,"14,1","43,3","Nozes e sementes"
+595,"Pinhão cozido","50,50%",174,3,"43,9","Nozes e sementes"
+596,"Pupunha cozida","54,50%",219,"2,5","29,6","Nozes e sementes"
+597,"Noz crua","6,20%",620,14,"18,4","Nozes e sementes"
