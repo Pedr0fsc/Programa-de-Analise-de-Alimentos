@@ -11,7 +11,6 @@
 #define MAX_ALIMENTOS 100
 
 
-
 // Estrutura das categorias
 typedef enum
 {
