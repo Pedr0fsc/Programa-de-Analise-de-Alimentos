@@ -254,7 +254,7 @@ int lerArquivoCSV(const char *nome_arquivo) {
     total_alimentos = 0;
     char linha[TAMANHO_LINHA];
     
-    /* Pular titulo */
+    /* Se o arquivo estiver vazio, fecha ele */
     if (fgets(linha, sizeof(linha), arquivo) == NULL) {
         printf("%s %s Arquivo vazio.%s\n", 
                RED_COLOR, ERROR_SYMBOL, RESET_COLOR);
@@ -262,96 +262,6 @@ int lerArquivoCSV(const char *nome_arquivo) {
         return 0;
     }
     
-    printf("DEBUG: Cabecalho: %s\n", linha);
-
-    /* Ler cada linha com debug inicial */
-    while (fgets(linha, sizeof(linha), arquivo) != NULL && 
-           total_alimentos < MAX_ALIMENTOS) {
-        
-        removerQuebraLinha(linha);
-        
-        if (total_alimentos < 3) {
-            printf("DEBUG: Linha %d: '%s'\n", total_alimentos + 1, linha);
-        }
-        
-        // Processar linha usando strtok
-        char *token = strtok(linha, ",");
-        if (token == NULL) continue;
-        
-        /* Campo 1: ID */
-        alimentos[total_alimentos].numero_do_alimento = atoi(token);
-        if (total_alimentos < 3) {
-            printf("DEBUG: ID = %d\n", alimentos[total_alimentos].numero_do_alimento);
-        }
-        
-        /* Campo 2: Descrição */
-        token = strtok(NULL, ",");
-        if (token == NULL) continue;
-        removerAspas(token);
-        strncpy(alimentos[total_alimentos].descricao, token, MAX_DESC - 1);
-        alimentos[total_alimentos].descricao[MAX_DESC - 1] = '\0';
-        if (total_alimentos < 3) {
-            printf("DEBUG: Descricao = '%s'\n", alimentos[total_alimentos].descricao);
-        }
-        
-        /* Campo 3: Umidade (com %) */
-        token = strtok(NULL, ",");
-        if (token == NULL) continue;
-        alimentos[total_alimentos].umidade = processarPorcentagem(token);
-        if (total_alimentos < 3) {
-            printf("DEBUG: Umidade = %.2f%%\n", alimentos[total_alimentos].umidade);
-        }
-        
-        /* Campo 4: Energias */
-        token = strtok(NULL, ",");
-        if (token == NULL) continue;
-        removerAspas(token);
-        substituirVirgulaPorPonto(token);
-        alimentos[total_alimentos].energia = atof(token);
-        if (total_alimentos < 3) {
-            printf("DEBUG: Energia = %.2f kcal\n", alimentos[total_alimentos].energia);
-        }
-        
-        /* Campo 5: Proteínas */
-        token = strtok(NULL, ",");
-        if (token == NULL) continue;
-        removerAspas(token);
-        substituirVirgulaPorPonto(token);
-        alimentos[total_alimentos].proteina = atof(token);
-        if (total_alimentos < 3) {
-            printf("DEBUG: Proteina = %.2f g\n", alimentos[total_alimentos].proteina);
-        }
-        
-        /* Campo 6: Carboidratos */
-        token = strtok(NULL, ",");
-        if (token == NULL) continue;
-        removerAspas(token);
-        substituirVirgulaPorPonto(token);
-        alimentos[total_alimentos].carboidrato = atof(token);
-        if (total_alimentos < 3) {
-            printf("DEBUG: Carboidrato = %.2f g\n", alimentos[total_alimentos].carboidrato);
-        }
-        
-        /* Campo 7: Categoria */
-        token = strtok(NULL, ",");
-        if (token == NULL) {
-            alimentos[total_alimentos].categoria = CEREAIS;
-        } else {
-            alimentos[total_alimentos].categoria = nomeParaCategoria(token);
-            if (total_alimentos < 3) {
-                printf("DEBUG: Categoria = '%s' -> enum %d (%s)\n", 
-                       token, alimentos[total_alimentos].categoria,
-                       obterNomeCategoria(alimentos[total_alimentos].categoria));
-            }
-        }
-        
-        total_alimentos++;
-        
-        if (total_alimentos == 3) {
-            printf("DEBUG: Continuando leitura sem debug...\n\n");
-        }
-    }
-
     fclose(arquivo);
     printf("\n%s %s Arquivo carregado: %d alimentos lidos com sucesso!%s\n", 
            GREEN_COLOR, CHECKMARK, total_alimentos, RESET_COLOR);
