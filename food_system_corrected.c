@@ -263,7 +263,7 @@ int lerArquivoCSV(const char *nome_arquivo) {
     total_alimentos = 0;
     char linha[TAMANHO_LINHA];
     
-    /* Pular cabeçalho */
+    /* Pular titulo */
     if (fgets(linha, sizeof(linha), arquivo) == NULL) {
         printf("%s %s Arquivo vazio.%s\n", 
                RED_COLOR, ERROR_SYMBOL, RESET_COLOR);
@@ -311,7 +311,7 @@ int lerArquivoCSV(const char *nome_arquivo) {
             printf("DEBUG: Umidade = %.2f%%\n", alimentos[total_alimentos].umidade);
         }
         
-        /* Campo 4: Energia */
+        /* Campo 4: Energias */
         token = strtok(NULL, ",");
         if (token == NULL) continue;
         removerAspas(token);
@@ -321,7 +321,7 @@ int lerArquivoCSV(const char *nome_arquivo) {
             printf("DEBUG: Energia = %.2f kcal\n", alimentos[total_alimentos].energia);
         }
         
-        /* Campo 5: Proteína */
+        /* Campo 5: Proteínas */
         token = strtok(NULL, ",");
         if (token == NULL) continue;
         removerAspas(token);
@@ -331,7 +331,7 @@ int lerArquivoCSV(const char *nome_arquivo) {
             printf("DEBUG: Proteina = %.2f g\n", alimentos[total_alimentos].proteina);
         }
         
-        /* Campo 6: Carboidrato */
+        /* Campo 6: Carboidratos */
         token = strtok(NULL, ",");
         if (token == NULL) continue;
         removerAspas(token);
@@ -341,7 +341,7 @@ int lerArquivoCSV(const char *nome_arquivo) {
             printf("DEBUG: Carboidrato = %.2f g\n", alimentos[total_alimentos].carboidrato);
         }
         
-        /* Campo 7: Categoria (nome textual) */
+        /* Campo 7: Categoria */
         token = strtok(NULL, ",");
         if (token == NULL) {
             alimentos[total_alimentos].categoria = CEREAIS;
@@ -381,7 +381,7 @@ int lerArquivoCSV(const char *nome_arquivo) {
 }
 
 /* ========================================================================
- * INTERFACE APRIMORADA
+ * INTERFACE 
  * ======================================================================== */
 
 /*
@@ -418,7 +418,7 @@ void listarCategorias(void) {
 }
 
 /*
- * Cabeçalho de tabela
+ * header de tabela
  */
 void imprimirCabecalhoTabela(void) {
     printf("\n+------+------------------------------------+---------+---------+----------+-------------+\n");
@@ -428,7 +428,7 @@ void imprimirCabecalhoTabela(void) {
 }
 
 /*
- * Rodapé de tabela
+ * Footer de tabela
  */
 void imprimirRodapeTabela(int total) {
     printf("+------+------------------------------------+---------+---------+----------+-------------+\n");
@@ -450,7 +450,7 @@ void imprimirLinhaAlimento(const Alimento *a) {
 }
 
 /* ========================================================================
- * FUNÇÕES DE ORDENAÇÃO (MANTIDAS ORIGINAIS)
+ * FUNÇÕES DE ORDENAÇÃO 
  * ======================================================================== */
 
 int filtrarPorCategoria(Categoria cat, Alimento *resultado[], int max_resultado) {
