@@ -3,7 +3,7 @@
 #include <string.h>
 #include <locale.h>
 
-// Códigos de cor ANSI para terminal
+// Códigos de cor ANSI
 #define RESET_COLOR   "\033[0m"
 #define RED_COLOR     "\033[31m"
 #define GREEN_COLOR   "\033[32m"
@@ -13,7 +13,7 @@
 #define CYAN_COLOR    "\033[36m"
 #define BOLD          "\033[1m"
 
-// Símbolos ASCII para compatibilidade
+// Símbolos ASCII
 #define CHECKMARK     "OK"
 #define WARNING       "!!"
 #define ERROR_SYMBOL  "XX"
@@ -60,7 +60,7 @@ typedef struct {
 } Alimento;
 
 /*
- * Estrutura auxiliar para ordenação eficiente
+ * Estrutura auxiliar para ordenação
  * Requisito 3: Evita replicar todo o vetor, usa apenas ponteiros
  */
 typedef struct {
@@ -97,7 +97,7 @@ void limparTela() {
 }
 
 /*
- * Pausa e aguarda ENTER
+ * Aguardar o usuario apretar ENTER pra continuar
  */
 void pausar() {
     printf("\n%sPressione ENTER para continuar...%s", YELLOW_COLOR, RESET_COLOR);
@@ -175,15 +175,6 @@ Categoria nomeParaCategoria(const char *nome) {
     strncpy(nome_limpo, nome, sizeof(nome_limpo) - 1);
     nome_limpo[sizeof(nome_limpo) - 1] = '\0';
     
-    // Remove aspas
-    if (nome_limpo[0] == '"') {
-        memmove(nome_limpo, nome_limpo + 1, strlen(nome_limpo));
-    }
-    size_t len = strlen(nome_limpo);
-    if (len > 0 && nome_limpo[len - 1] == '"') {
-        nome_limpo[len - 1] = '\0';
-    }
-    
     if (strstr(nome_limpo, "Cereais")) return CEREAIS;
     if (strstr(nome_limpo, "Verduras") || strstr(nome_limpo, "hortalicas")) return VERDURAS;
     if (strstr(nome_limpo, "Frutas")) return FRUTAS;
@@ -204,7 +195,7 @@ Categoria nomeParaCategoria(const char *nome) {
 }
 
 /*
- * Converte número inteiro em enumerado Categoria
+ * Converte número inteiro para seu respectivo no ENUM
  */
 Categoria intParaCategoria(int cat_num) {
     if (cat_num >= CEREAIS && cat_num <= SEMENTES) {
@@ -214,7 +205,7 @@ Categoria intParaCategoria(int cat_num) {
 }
 
 /*
- * Obtém nome textual da categoria
+ * Categorias
  */
 const char* obterNomeCategoria(Categoria cat) {
     static const char *nomes[] = {
@@ -243,11 +234,11 @@ const char* obterNomeCategoria(Categoria cat) {
 }
 
 /* ========================================================================
- * FUNÇÕES DE LEITURA DE DADOS (CORRIGIDA)
+ * FUNÇÕES DE LEITURA DE DADOS 
  * ======================================================================== */
 
 /*
- * Lê arquivo CSV com processamento correto dos formatos
+ * Lê arquivo CSV, ja fazendo o processamento dos dados
  */
 int lerArquivoCSV(const char *nome_arquivo) {
     FILE *arquivo = fopen(nome_arquivo, "r");
