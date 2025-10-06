@@ -261,7 +261,7 @@ int lerArquivoCSV(const char *nome_arquivo) {
         fclose(arquivo);
         return 0;
     }
-    
+
     fclose(arquivo);
     printf("\n%s %s Arquivo carregado: %d alimentos lidos com sucesso!%s\n", 
            GREEN_COLOR, CHECKMARK, total_alimentos, RESET_COLOR);
@@ -294,7 +294,7 @@ void listarCategorias(void) {
     printf("===============================================\n");
     
     const char* categorias[] = {
-        "", // índice 0 não usado
+        "", // índice 0 
         "Cereais e derivados",
         "Verduras, hortalicas e derivados",
         "Frutas e derivados", 
@@ -319,7 +319,7 @@ void listarCategorias(void) {
 }
 
 /*
- * header de tabela
+ * titulo da tabela
  */
 void imprimirCabecalhoTabela(void) {
     printf("\n+------+------------------------------------+---------+---------+----------+-------------+\n");
@@ -342,10 +342,10 @@ void imprimirRodapeTabela(int total) {
  */
 void imprimirLinhaAlimento(const Alimento *a) {
     char desc_truncada[37];
-    strncpy(desc_truncada, a->descricao, 36);
+    strncpy(desc_truncada, a->descricao, 36); // le a descricao e armazenda ela em desc_truncada
     desc_truncada[36] = '\0';
     
-    printf("| %4d | %-34s | %7.2f | %7.2f | %8.2f | %11.2f |\n",
+    printf("| %4d | %-36s | %7.2f | %7.2f | %8.2f | %11.2f |\n",
            a->numero_do_alimento, desc_truncada, a->umidade, 
            a->energia, a->proteina, a->carboidrato);
 }
