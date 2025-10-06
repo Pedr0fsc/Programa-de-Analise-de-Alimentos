@@ -150,20 +150,20 @@ void removerAspas(char *str) {
 /*
  * Remove símbolo de porcentagem e converte para float
  */
-float processarPorcentagem(char *textoComPorcentagem) {
+float processarPorcentagem(char *str) {
     // Remove aspas se existirem
-    removerAspas(textoComPorcentagem);
+    removerAspas(str);
     
     // Remove o símbolo % se existir
-    size_t quantidadeDeLetras = strlen(textoComPorcentagem);
-    if (quantidadeDeLetras > 0 && str[quantidadeDeLetras - 1] == '%') {
-        str[quantidadeDeLetras - 1] = '\0';
+    size_t len = strlen(str);
+    if (len > 0 && str[len - 1] == '%') {
+        str[len - 1] = '\0';
     }
     
     // Substitui vírgula por ponto
-    substituirVirgulaPorPonto(textoComPorcentagem);
+    substituirVirgulaPorPonto(str);
     
-    return atof(textoComPorcentagem);
+    return atof(str);
 }
 
 /*
@@ -191,15 +191,15 @@ Categoria nomeParaCategoria(const char *nome) {
     if (strstr(nome_limpo, "Leguminosas")) return LEGUMINOSAS;
     if (strstr(nome_limpo, "sementes") || strstr(nome_limpo, "Nozes")) return SEMENTES;
     
-    return CEREAIS; // default
+    return CEREAIS; // padrão
 }
 
 /*
  * Converte número inteiro para seu respectivo no ENUM
  */
-Categoria intParaCategoria(int numeroDigitadoPeloUsuario) {
-    if (numeroDigitadoPeloUsuario >= CEREAIS && numeroDigitadoPeloUsuario <= SEMENTES) {
-        return (Categoria)numeroDigitadoPeloUsuario;
+Categoria intParaCategoria(int cat_num) {
+    if (cat_num >= CEREAIS && cat_num <= SEMENTES) {
+        return (Categoria)cat_num;
     }
     return CEREAIS;
 }
@@ -208,7 +208,7 @@ Categoria intParaCategoria(int numeroDigitadoPeloUsuario) {
  * Categorias
  */
 const char* obterNomeCategoria(Categoria cat) {
-    static const char *nomesDasCategorias[] = {
+    static const char *nomes[] = {
         "",
         "Cereais e derivados",
         "Verduras, hortalicas e derivados", 
@@ -240,11 +240,11 @@ const char* obterNomeCategoria(Categoria cat) {
 /*
  * Lê arquivo CSV, ja fazendo o processamento dos dados
  */
-int lerArquivoCSV(const char *nomeDoArquivoCSV) {
-    FILE *arquivo = fopen(nomeDoArquivoCSV, "r");
+int lerArquivoCSV(const char *nome_arquivo) {
+    FILE *arquivo = fopen(nome_arquivo, "r");
     if (arquivo == NULL) {
         printf("%s %s Arquivo '%s' nao encontrado.%s\n", 
-               RED_COLOR, ERROR_SYMBOL, nomeDoArquivoCSV, RESET_COLOR);
+               RED_COLOR, ERROR_SYMBOL, nome_arquivo, RESET_COLOR);
         return 0;
     }
 
@@ -254,17 +254,119 @@ int lerArquivoCSV(const char *nomeDoArquivoCSV) {
     total_alimentos = 0;
     char linha[TAMANHO_LINHA];
     
-    /* Se o arquivo estiver vazio, fecha ele */
+    /* Pular titulo */
     if (fgets(linha, sizeof(linha), arquivo) == NULL) {
         printf("%s %s Arquivo vazio.%s\n", 
                RED_COLOR, ERROR_SYMBOL, RESET_COLOR);
         fclose(arquivo);
         return 0;
     }
+    
+    printf("DEBUG: Cabecalho: %s\n", linha);
+
+    /* Ler cada linha com debug inicial */
+    while (fgets(linha, sizeof(linha), arquivo) != NULL && 
+           total_alimentos < MAX_ALIMENTOS) {
+        
+        removerQuebraLinha(linha);
+        
+        if (total_alimentos < 3) {
+            printf("DEBUG: Linha %d: '%s'\n", total_alimentos + 1, linha);
+        }
+        
+        // Processar linha usando strtok
+        char *token = strtok(linha, ",");
+        if (token == NULL) continue;
+        
+        /* Campo 1: ID */
+        alimentos[total_alimentos].numero_do_alimento = atoi(token);
+        if (total_alimentos < 3) {
+            printf("DEBUG: ID = %d\n", alimentos[total_alimentos].numero_do_alimento);
+        }
+        
+        /* Campo 2: Descrição */
+        token = strtok(NULL, ",");
+        if (token == NULL) continue;
+        removerAspas(token);
+        strncpy(alimentos[total_alimentos].descricao, token, MAX_DESC - 1);
+        alimentos[total_alimentos].descricao[MAX_DESC - 1] = '\0';
+        if (total_alimentos < 3) {
+            printf("DEBUG: Descricao = '%s'\n", alimentos[total_alimentos].descricao);
+        }
+        
+        /* Campo 3: Umidade (com %) */
+        token = strtok(NULL, ",");
+        if (token == NULL) continue;
+        alimentos[total_alimentos].umidade = processarPorcentagem(token);
+        if (total_alimentos < 3) {
+            printf("DEBUG: Umidade = %.2f%%\n", alimentos[total_alimentos].umidade);
+        }
+        
+        /* Campo 4: Energias */
+        token = strtok(NULL, ",");
+        if (token == NULL) continue;
+        removerAspas(token);
+        substituirVirgulaPorPonto(token);
+        alimentos[total_alimentos].energia = atof(token);
+        if (total_alimentos < 3) {
+            printf("DEBUG: Energia = %.2f kcal\n", alimentos[total_alimentos].energia);
+        }
+        
+        /* Campo 5: Proteínas */
+        token = strtok(NULL, ",");
+        if (token == NULL) continue;
+        removerAspas(token);
+        substituirVirgulaPorPonto(token);
+        alimentos[total_alimentos].proteina = atof(token);
+        if (total_alimentos < 3) {
+            printf("DEBUG: Proteina = %.2f g\n", alimentos[total_alimentos].proteina);
+        }
+        
+        /* Campo 6: Carboidratos */
+        token = strtok(NULL, ",");
+        if (token == NULL) continue;
+        removerAspas(token);
+        substituirVirgulaPorPonto(token);
+        alimentos[total_alimentos].carboidrato = atof(token);
+        if (total_alimentos < 3) {
+            printf("DEBUG: Carboidrato = %.2f g\n", alimentos[total_alimentos].carboidrato);
+        }
+        
+        /* Campo 7: Categoria */
+        token = strtok(NULL, ",");
+        if (token == NULL) {
+            alimentos[total_alimentos].categoria = CEREAIS;
+        } else {
+            alimentos[total_alimentos].categoria = nomeParaCategoria(token);
+            if (total_alimentos < 3) {
+                printf("DEBUG: Categoria = '%s' -> enum %d (%s)\n", 
+                       token, alimentos[total_alimentos].categoria,
+                       obterNomeCategoria(alimentos[total_alimentos].categoria));
+            }
+        }
+        
+        total_alimentos++;
+        
+        if (total_alimentos == 3) {
+            printf("DEBUG: Continuando leitura sem debug...\n\n");
+        }
+    }
 
     fclose(arquivo);
     printf("\n%s %s Arquivo carregado: %d alimentos lidos com sucesso!%s\n", 
            GREEN_COLOR, CHECKMARK, total_alimentos, RESET_COLOR);
+    
+    // Debug: Mostrar estatísticas por categoria
+    printf("\nDEBUG: Estatisticas por categoria:\n");
+    for (int cat = CEREAIS; cat <= SEMENTES; cat++) {
+        int count = 0;
+        for (int i = 0; i < total_alimentos; i++) {
+            if (alimentos[i].categoria == cat) {
+                count++;
+            }
+        }
+        printf("Categoria %d (%s): %d alimentos\n", cat, obterNomeCategoria(cat), count);
+    }
     
     return 1;
 }
@@ -276,13 +378,13 @@ int lerArquivoCSV(const char *nomeDoArquivoCSV) {
 /*
  * Exibe lista de categorias
  */
-void listarCategorias() {
+void listarCategorias(void) {
     printf("\n===============================================\n");
     printf("              CATEGORIAS DE ALIMENTOS\n");
     printf("===============================================\n");
     
     const char* categorias[] = {
-        "", // índice 0 
+        "", // índice 0 não usado
         "Cereais e derivados",
         "Verduras, hortalicas e derivados",
         "Frutas e derivados", 
@@ -307,9 +409,9 @@ void listarCategorias() {
 }
 
 /*
- * titulo da tabela
+ * header de tabela
  */
-void imprimirCabecalhoTabela() {
+void imprimirCabecalhoTabela(void) {
     printf("\n+------+------------------------------------+---------+---------+----------+-------------+\n");
     printf("|  ID  |            DESCRICAO               | UMIDADE | ENERGIA | PROTEINA | CARBOIDRATO |\n");
     printf("|      |                                    |   (%%)   |  (kcal) |    (g)   |     (g)     |\n");
@@ -330,10 +432,10 @@ void imprimirRodapeTabela(int total) {
  */
 void imprimirLinhaAlimento(const Alimento *a) {
     char desc_truncada[37];
-    strncpy(desc_truncada, a->descricao, 36); // le a descricao e armazenda ela em desc_truncada
+    strncpy(desc_truncada, a->descricao, 36);
     desc_truncada[36] = '\0';
     
-    printf("| %4d | %-36s | %7.2f | %7.2f | %8.2f | %11.2f |\n",
+    printf("| %4d | %-34s | %7.2f | %7.2f | %8.2f | %11.2f |\n",
            a->numero_do_alimento, desc_truncada, a->umidade, 
            a->energia, a->proteina, a->carboidrato);
 }
@@ -355,25 +457,17 @@ int filtrarPorCategoria(Categoria cat, Alimento *resultado[], int max_resultado)
     return count;
 }
 
-// Ordena os arquivos usando STRCMP, ela analisa 2 strings e retorna 
-/*
-* 0 se as strings forem IGUAIS
-* -1 se a primeira string for MENOR
-* 1 se a primeira string for MAIOR
-*/
 void ordenarPorDescricao(Alimento *arr[], int n) {
     for (int i = 0; i < n - 1; i++) {
         for (int j = 0; j < n - i - 1; j++) {
-            if (strcmp(arr[j]->descricao, arr[j + 1]->descricao) > 0) { 
+            if (strcmp(arr[j]->descricao, arr[j + 1]->descricao) > 0) {
                 Alimento *temp = arr[j];
                 arr[j] = arr[j + 1];
                 arr[j + 1] = temp;
-
             }
         }
     }
 }
-
 
 void ordenarDecrescente(ItemOrdenacao arr[], int n) {
     for (int i = 0; i < n - 1; i++) {
@@ -396,7 +490,7 @@ void prepararOrdenacaoNumerica(Alimento *filtrados[], int total,
     }
 }
 
-/* Ponteiros para os elementos da tabela */
+/* Funções auxiliares para extração */
 float extrairUmidade(const Alimento *a) { return a->umidade; }
 float extrairEnergia(const Alimento *a) { return a->energia; }
 float extrairProteina(const Alimento *a) { return a->proteina; }
@@ -422,7 +516,7 @@ void listarPorDescricao(Categoria cat) {
         return;
     }
     
-    ordenarPorDescricao(filtrados, total); // chama a funcao para ordenar pro descricao
+    ordenarPorDescricao(filtrados, total);
     
     printf("\n%s=== CATEGORIA: %s ===%s\n", MAGENTA_COLOR, obterNomeCategoria(cat), RESET_COLOR);
     printf("%sORDENACAO: Alfabetica (A-Z)%s\n", MAGENTA_COLOR, RESET_COLOR);
@@ -502,7 +596,7 @@ void listarTopNPorCriterio(Categoria cat,
  * FUNÇÃO PRINCIPAL
  * ======================================================================== */
 
-int main() {
+int main(void) {
     setlocale(LC_ALL, "Portuguese");
     
     // Banner inicial
