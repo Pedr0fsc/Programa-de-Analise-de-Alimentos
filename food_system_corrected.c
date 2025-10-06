@@ -150,20 +150,20 @@ void removerAspas(char *str) {
 /*
  * Remove símbolo de porcentagem e converte para float
  */
-float processarPorcentagem(char *str) {
+float processarPorcentagem(char *textoComPorcentagem) {
     // Remove aspas se existirem
-    removerAspas(str);
+    removerAspas(textoComPorcentagem);
     
     // Remove o símbolo % se existir
-    size_t len = strlen(str);
-    if (len > 0 && str[len - 1] == '%') {
-        str[len - 1] = '\0';
+    size_t quantidadeDeLetras = strlen(textoComPorcentagem);
+    if (quantidadeDeLetras > 0 && str[quantidadeDeLetras - 1] == '%') {
+        str[quantidadeDeLetras - 1] = '\0';
     }
     
     // Substitui vírgula por ponto
-    substituirVirgulaPorPonto(str);
+    substituirVirgulaPorPonto(textoComPorcentagem);
     
-    return atof(str);
+    return atof(textoComPorcentagem);
 }
 
 /*
@@ -191,15 +191,15 @@ Categoria nomeParaCategoria(const char *nome) {
     if (strstr(nome_limpo, "Leguminosas")) return LEGUMINOSAS;
     if (strstr(nome_limpo, "sementes") || strstr(nome_limpo, "Nozes")) return SEMENTES;
     
-    return CEREAIS; // padrão
+    return CEREAIS; // default
 }
 
 /*
  * Converte número inteiro para seu respectivo no ENUM
  */
-Categoria intParaCategoria(int cat_num) {
-    if (cat_num >= CEREAIS && cat_num <= SEMENTES) {
-        return (Categoria)cat_num;
+Categoria intParaCategoria(int numeroDigitadoPeloUsuario) {
+    if (numeroDigitadoPeloUsuario >= CEREAIS && numeroDigitadoPeloUsuario <= SEMENTES) {
+        return (Categoria)numeroDigitadoPeloUsuario;
     }
     return CEREAIS;
 }
@@ -208,7 +208,7 @@ Categoria intParaCategoria(int cat_num) {
  * Categorias
  */
 const char* obterNomeCategoria(Categoria cat) {
-    static const char *nomes[] = {
+    static const char *nomesDasCategorias[] = {
         "",
         "Cereais e derivados",
         "Verduras, hortalicas e derivados", 
@@ -240,11 +240,11 @@ const char* obterNomeCategoria(Categoria cat) {
 /*
  * Lê arquivo CSV, ja fazendo o processamento dos dados
  */
-int lerArquivoCSV(const char *nome_arquivo) {
-    FILE *arquivo = fopen(nome_arquivo, "r");
+int lerArquivoCSV(const char *nomeDoArquivoCSV) {
+    FILE *arquivo = fopen(nomeDoArquivoCSV, "r");
     if (arquivo == NULL) {
         printf("%s %s Arquivo '%s' nao encontrado.%s\n", 
-               RED_COLOR, ERROR_SYMBOL, nome_arquivo, RESET_COLOR);
+               RED_COLOR, ERROR_SYMBOL, nomeDoArquivoCSV, RESET_COLOR);
         return 0;
     }
 
@@ -266,18 +266,6 @@ int lerArquivoCSV(const char *nome_arquivo) {
     printf("\n%s %s Arquivo carregado: %d alimentos lidos com sucesso!%s\n", 
            GREEN_COLOR, CHECKMARK, total_alimentos, RESET_COLOR);
     
-    // Debug: Mostrar estatísticas por categoria
-    printf("\nDEBUG: Estatisticas por categoria:\n");
-    for (int cat = CEREAIS; cat <= SEMENTES; cat++) {
-        int count = 0;
-        for (int i = 0; i < total_alimentos; i++) {
-            if (alimentos[i].categoria == cat) {
-                count++;
-            }
-        }
-        printf("Categoria %d (%s): %d alimentos\n", cat, obterNomeCategoria(cat), count);
-    }
-    
     return 1;
 }
 
@@ -288,7 +276,7 @@ int lerArquivoCSV(const char *nome_arquivo) {
 /*
  * Exibe lista de categorias
  */
-void listarCategorias(void) {
+void listarCategorias() {
     printf("\n===============================================\n");
     printf("              CATEGORIAS DE ALIMENTOS\n");
     printf("===============================================\n");
@@ -321,7 +309,7 @@ void listarCategorias(void) {
 /*
  * titulo da tabela
  */
-void imprimirCabecalhoTabela(void) {
+void imprimirCabecalhoTabela() {
     printf("\n+------+------------------------------------+---------+---------+----------+-------------+\n");
     printf("|  ID  |            DESCRICAO               | UMIDADE | ENERGIA | PROTEINA | CARBOIDRATO |\n");
     printf("|      |                                    |   (%%)   |  (kcal) |    (g)   |     (g)     |\n");
@@ -367,17 +355,25 @@ int filtrarPorCategoria(Categoria cat, Alimento *resultado[], int max_resultado)
     return count;
 }
 
+// Ordena os arquivos usando STRCMP, ela analisa 2 strings e retorna 
+/*
+* 0 se as strings forem IGUAIS
+* -1 se a primeira string for MENOR
+* 1 se a primeira string for MAIOR
+*/
 void ordenarPorDescricao(Alimento *arr[], int n) {
     for (int i = 0; i < n - 1; i++) {
         for (int j = 0; j < n - i - 1; j++) {
-            if (strcmp(arr[j]->descricao, arr[j + 1]->descricao) > 0) {
+            if (strcmp(arr[j]->descricao, arr[j + 1]->descricao) > 0) { 
                 Alimento *temp = arr[j];
                 arr[j] = arr[j + 1];
                 arr[j + 1] = temp;
+
             }
         }
     }
 }
+
 
 void ordenarDecrescente(ItemOrdenacao arr[], int n) {
     for (int i = 0; i < n - 1; i++) {
@@ -400,7 +396,7 @@ void prepararOrdenacaoNumerica(Alimento *filtrados[], int total,
     }
 }
 
-/* Funções auxiliares para extração */
+/* Ponteiros para os elementos da tabela */
 float extrairUmidade(const Alimento *a) { return a->umidade; }
 float extrairEnergia(const Alimento *a) { return a->energia; }
 float extrairProteina(const Alimento *a) { return a->proteina; }
@@ -426,7 +422,7 @@ void listarPorDescricao(Categoria cat) {
         return;
     }
     
-    ordenarPorDescricao(filtrados, total);
+    ordenarPorDescricao(filtrados, total); // chama a funcao para ordenar pro descricao
     
     printf("\n%s=== CATEGORIA: %s ===%s\n", MAGENTA_COLOR, obterNomeCategoria(cat), RESET_COLOR);
     printf("%sORDENACAO: Alfabetica (A-Z)%s\n", MAGENTA_COLOR, RESET_COLOR);
@@ -506,7 +502,7 @@ void listarTopNPorCriterio(Categoria cat,
  * FUNÇÃO PRINCIPAL
  * ======================================================================== */
 
-int main(void) {
+int main() {
     setlocale(LC_ALL, "Portuguese");
     
     // Banner inicial
@@ -546,7 +542,7 @@ int main(void) {
         printf("%s 9%s Listar alimentos por categoria (relacao energia/carboidrato)\n", YELLOW_COLOR, RESET_COLOR);
         printf("%s10%s Encerrar programa\n", RED_COLOR, RESET_COLOR);
         
-        printf("\n===============================================\n");fjgfgff
+        printf("\n===============================================\n");
         printf("Opcao: ");
         
         if (scanf("%d", &opcao) != 1) {
