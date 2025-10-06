@@ -73,11 +73,11 @@ Alimento alimentos[MAX_ALIMENTOS];
 int total_alimentos = 0;
 
 /* ========================================================================
- * FUNÇÕES DE UTILIDADE VISUAL
+ * FUNÇÕES DE DESIGN DO CLI
  * ======================================================================== */
 
 /*
- * Exibe barra de progresso simples
+ * Barrinha de progresso 
  */
 void mostrarProgresso(int atual, int total, const char* operacao) {
     int porcentagem = (atual * 100) / total;
@@ -86,7 +86,7 @@ void mostrarProgresso(int atual, int total, const char* operacao) {
 }
 
 /*
- * Limpa a tela (multiplataforma)
+ * Limpar a tela do cmd
  */
 void limparTela() {
     #ifdef _WIN32 // se for windows, usa CLS
@@ -106,7 +106,7 @@ void pausar() {
 }
 
 /* ========================================================================
- * FUNÇÕES DE UTILIDADE ORIGINAIS (MANTIDAS)
+ * FUNÇÕES DE FORMATACAO
  * ======================================================================== */
 
 /*
