@@ -448,15 +448,15 @@
 447;Creme de Leite;221;1,5;Leite e derivados
 448;Iogurte natural;51;4,1;Leite e derivados
 449;Iogurte natural desnatado;41;3,8;Leite e derivados
-450;Iogurte sabor abacaxi;;;Leite e derivados
+450;Iogurte sabor abacaxi;0;0,0;Leite e derivados
 451;Iogurte sabor morango;70;2,7;Leite e derivados
 452;Iogurte sabor pêssego;68;2,5;Leite e derivados
 453;Leite condensado;313;7,7;Leite e derivados
 454;Leite de cabra;66;3,1;Leite e derivados
 455;Leite de vaca achocolatado;83;2,1;Leite e derivados
 456;Leite de vaca desnatado pó;362;34,7;Leite e derivados
-457;Leite de vaca desnatado UHT;;;Leite e derivados
-458;Leite de vaca integral;;;Leite e derivados
+457;Leite de vaca desnatado UHT;0;0,0;Leite e derivados
+458;Leite de vaca integral;0;0,0;Leite e derivados
 459;Leite de vaca integral pó;497;25,4;Leite e derivados
 460;Leite fermentado;70;1,9;Leite e derivados
 461;Queijo minas frescal;264;17,4;Leite e derivados
@@ -514,8 +514,8 @@
 513;Fermento em pó químico;90;0,5;Miscelâneas
 514;Fermento biológico levedura tablete;90;17;Miscelâneas
 515;Gelatina sabores variados pó;380;8,9;Miscelâneas
-516;Sal dietético;;;Miscelâneas
-517;Sal grosso;;;Miscelâneas
+516;Sal dietético;0;0,0;Miscelâneas
+517;Sal grosso;0;0,0;Miscelâneas
 518;Shoyu;61;3,3;Miscelâneas
 519;Tempero a base de sal;21;2,7;Miscelâneas
 520;Azeitona preta conserva;194;1,2;Outros alimentos industrializados 
@@ -589,7 +589,7 @@
 588;Castanha-de-caju torrada salgada;570;18,5;Nozes e sementes
 589;Castanha-do-Brasil crua;643;14,5;Nozes e sementes
 590;Coco cru;406;3,7;Nozes e sementes
-591;Coco verde cru;;;Nozes e sementes
+591;Coco verde cru;0;0,0;Nozes e sementes
 592;Farinha de mesocarpo de babaçu crua;329;1,4;Nozes e sementes
 593;Gergelim semente;584;21,2;Nozes e sementes
 594;Linhaça semente;495;14,1;Nozes e sementes
