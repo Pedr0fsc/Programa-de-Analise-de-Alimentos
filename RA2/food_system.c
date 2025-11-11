@@ -134,6 +134,7 @@ int lerArquivoCSV(const char *nome_arquivo) {
 
     total_alimentos = 0;
     char linha[TAMANHO_LINHA];
+    const char *delimitador = ";";
 
     /* Pular cabeçalho */
     if (fgets(linha, sizeof(linha), arquivo) == NULL) { // condicional: arquivo vazio
@@ -145,47 +146,47 @@ int lerArquivoCSV(const char *nome_arquivo) {
     while (fgets(linha, sizeof(linha), arquivo) != NULL && total_alimentos < MAX_ALIMENTOS) { // loop: lê cada linha
         removerQuebraLinha(linha);
 
-        char *token = strtok(linha, ","); // tokeniza por vírgula
+        char *token = strtok(linha, delimitador); // tokeniza por ponto e vírgula
         if (token == NULL) continue; // condicional: linha vazia ou inválida
 
         /* Campo 1: ID */
         alimentos[total_alimentos].numero_do_alimento = atoi(token);
 
         /* Campo 2: Descrição */
-        token = strtok(NULL, ",");
+        token = strtok(NULL, delimitador);
         if (token == NULL) continue;
         removerAspas(token);
         strncpy(alimentos[total_alimentos].descricao, token, MAX_DESC-1);
         alimentos[total_alimentos].descricao[MAX_DESC-1] = '\0';
 
         /* Campo 3: Umidade (%) */
-        token = strtok(NULL, ",");
+        token = strtok(NULL, delimitador);
         if (token == NULL) continue;
         alimentos[total_alimentos].umidade = processarPorcentagem(token);
 
         /* Campo 4: Energia (kcal) */
-        token = strtok(NULL, ",");
+        token = strtok(NULL, delimitador);
         if (token == NULL) continue;
         removerAspas(token);
         substituirVirgulaPorPonto(token);
         alimentos[total_alimentos].energia = atof(token);
 
         /* Campo 5: Proteína (g) */
-        token = strtok(NULL, ",");
+        token = strtok(NULL, delimitador);
         if (token == NULL) continue;
         removerAspas(token);
         substituirVirgulaPorPonto(token);
         alimentos[total_alimentos].proteina = atof(token);
 
         /* Campo 6: Carboidrato (g) */
-        token = strtok(NULL, ",");
+        token = strtok(NULL, delimitador);
         if (token == NULL) continue;
         removerAspas(token);
         substituirVirgulaPorPonto(token);
         alimentos[total_alimentos].carboidrato = atof(token);
 
         /* Campo 7: Categoria */
-        token = strtok(NULL, ",");
+        token = strtok(NULL, delimitador);
         if (token == NULL) {
             alimentos[total_alimentos].categoria = CEREAIS; // condicional: sem categoria -> padrão
         } else {
