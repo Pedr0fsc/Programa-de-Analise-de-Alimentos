@@ -1,0 +1,30 @@
+{
+  "name": "Programa de Análise de Alimentos (C)",
+  // Indica ao Codespaces para usar o DOCKERFILE que está nesta mesma pasta.
+  "build": {
+    "dockerfile": "DOCKERFILE",
+    "context": "."
+  },
+
+  "workspaceFolder": "/RA2",
+
+  // Configurações do VS Code
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "C_Cpp.default.compilerPath": "/usr/bin/gcc",
+        "files.associations": {
+          "*.h": "c"
+        }
+      },
+      "extensions": [
+        "ms-vscode.cpptools",
+        "ms-vscode.cmake-tools",
+        "editorconfig.editorconfig"
+      ]
+    }
+  },
+
+  // garantir as perks do usuario
+  "postCreateCommand": "sudo chown -R vscode:vscode /RA2 && sudo chmod -R 775 /RA2"
+}

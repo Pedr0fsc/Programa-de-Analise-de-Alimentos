@@ -1,0 +1,17 @@
+# o GCC eh o compilador padrao de sistemas embarcados em linux, entao compensa usar UBUNTU
+FROM ubuntu:22.04
+
+LABEL maintainer="Eduardo Ellwanger <edu.oellwanger@gmail.com>"
+
+# instala os components pra rodar codigos em C
+# o valgrind verifica vazamento de memoria
+RUN apt-get update && \
+    apt-get install -y \
+    build-essential \  
+    gdb \
+    valgrind \
+    && rm -rf /var/lib/apt/lists/*
+
+    WORKDIR /RA2
+
+    CMD ["/bin/bash"]
