@@ -19,7 +19,3 @@ void verificarArquivoBinario(const char* arquivoBinario) {
     printf("Total de registros no binário: %d\n", i);
     fclose(f);
 }
-
-
-
-

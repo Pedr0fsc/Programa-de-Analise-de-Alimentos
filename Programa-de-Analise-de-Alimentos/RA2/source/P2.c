@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #include "../include/p2.h"
+#include "../include/p2_impl.h"
 
 // Main do programa P2 — fica somente aqui
 int main(void) {
@@ -18,3 +19,4 @@ int main(void) {
 
     return 0;
 }
+  
